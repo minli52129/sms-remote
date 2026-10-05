@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>短信远程管理</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>短信远程管理</h1>
+      <div class="status">
+        <span id="connectionStatus" class="status-dot disconnected"></span>
+        <span id="connectionText">未连接</span>
+      </div>
+    </header>
+
+    <!-- 登录界面 -->
+    <div id="loginPanel" class="panel">
+      <h2>登录</h2>
+      <input type="password" id="passwordInput" placeholder="访问密码">
+      <button onclick="login()">登录</button>
+    </div>
+
+    <!-- 主界面 -->
+    <div id="mainPanel" class="hidden">
+      <!-- 设备状态 -->
+      <div class="panel">
+        <h2>设备状态</h2>
+        <div id="deviceList"></div>
+      </div>
+
+      <!-- SIM 卡信息 -->
+      <div class="panel">
+        <h2>SIM 卡信息</h2>
+        <div id="simList"></div>
+      </div>
+
+      <!-- 发送短信 -->
+      <div class="panel">
+        <h2>发送短信</h2>
+        <div class="form-group">
+          <label>发送号码：</label>
+          <select id="simSelect">
+            <option value="0">SIM 1</option>
+            <option value="1">SIM 2</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>接收号码：</label>
+          <input type="tel" id="phoneInput" placeholder="请输入手机号">
+        </div>
+        <div class="form-group">
+          <label>短信内容：</label>
+          <textarea id="contentInput" rows="3" placeholder="请输入短信内容"></textarea>
+        </div>
+        <button onclick="sendSms()">发送</button>
+      </div>
+
+      <!-- 短信记录 -->
+      <div class="panel">
+        <h2>短信记录</h2>
+        <div id="messageList"></div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
